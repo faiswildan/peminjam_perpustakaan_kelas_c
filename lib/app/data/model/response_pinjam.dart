@@ -72,8 +72,8 @@ class DataPinjam {
     book = json['book'] != null ? Book.fromJson(json['book']) : null;
   }
   int? id;
-  String? userId;
-  String? bookId;
+  int? userId;
+  int? bookId;
   String? tanggalPinjam;
   String? tanggalKembali;
   String? status;
@@ -115,6 +115,7 @@ class Book {
   Book({
     this.id,
     this.kategoriId,
+    this.image,
     this.judul,
     this.penulis,
     this.penerbit,
@@ -126,6 +127,7 @@ class Book {
   Book.fromJson(dynamic json) {
     id = json['id'];
     kategoriId = json['kategori_id'];
+    image = json['image'];
     judul = json['judul'];
     penulis = json['penulis'];
     penerbit = json['penerbit'];
@@ -134,11 +136,12 @@ class Book {
     updatedAt = json['updated_at'];
   }
   int? id;
-  String? kategoriId;
+  int? kategoriId;
+  String? image;
   String? judul;
   String? penulis;
   String? penerbit;
-  String? tahunTerbit;
+  int? tahunTerbit;
   String? createdAt;
   String? updatedAt;
 
@@ -146,6 +149,7 @@ class Book {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['kategori_id'] = kategoriId;
+    map['image'] = image;
     map['judul'] = judul;
     map['penulis'] = penulis;
     map['penerbit'] = penerbit;

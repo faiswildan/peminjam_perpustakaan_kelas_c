@@ -1,14 +1,19 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/constant/endpoint.dart';
-import '../../../data/model/response_book.dart';
+import '../../../data/model/response_buku.dart';
 import '../../../data/provider/api_provider.dart';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart'as dio;
 
-class BookController extends GetxController with StateMixin<List<DataBook>> {
-  //TODO: Implement BookController
+import '../../../data/provider/storage_provider.dart';
 
+class BookController extends GetxController with StateMixin<List<DataBuku>> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final count = 0.obs;
+  final loading = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -24,22 +29,24 @@ class BookController extends GetxController with StateMixin<List<DataBook>> {
   void onClose() {
     super.onClose();
   }
+
+  // Fungsi untuk mengambil data buku dari server
   getData() async {
     change(null, status: RxStatus.loading());
     try {
       final response = await ApiProvider.instance().get(Endpoint.book);
       if (response.statusCode == 200) {
-        final ResponsesBook responseBook =
-        ResponsesBook.fromJson(response.data);
-        if (responseBook.data!.isEmpty) {
+        final ResponseBuku responseBuku =
+        ResponseBuku.fromJson(response.data);
+        if (responseBuku.data!.isEmpty) {
           change(null, status: RxStatus.empty());
         } else {
-          change(responseBook.data, status: RxStatus.success());
+          change(responseBuku.data, status: RxStatus.success());
         }
       } else {
         change(null, status: RxStatus.error("Gagal mengambil data"));
       }
-    } on DioException catch (e) {
+    } on DioError catch (e) {
       if (e.response != null) {
         if (e.response?.data != null) {
           change(null,
@@ -50,6 +57,44 @@ class BookController extends GetxController with StateMixin<List<DataBook>> {
       }
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
+    }
+  }
+
+  addKoleksi(context, index) async {
+    loading(true);
+    try {
+      FocusScope.of(Get.context!).unfocus(); //nge close keyboard
+      DataBuku dataBuku = state![index];
+      final idUser = StorageProvider.read(StorageKey.idUser);
+      final bookId = Get.parameters['id'];
+      // if (idUser == null || bookId == null) {
+      //   Get.snackbar("Sorry", "User ID or Book ID is not available", backgroundColor: Colors.orange);
+      //   return;
+      // }
+      final response = await ApiProvider.instance().post(Endpoint.koleksi,
+          data: {
+            "user_id": int.parse(StorageProvider.read(StorageKey.idUser)),
+            "book_id": dataBuku.id,
+          });
+      if (response.statusCode == 201) {
+        Get.back();
+        Get.snackbar("Berhasil", "Buku berhasil disimpan ke dalam koleksi", backgroundColor: Colors.green);
+      } else {
+        Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);
+      }
+    } on dio.DioException catch (e) {
+      loading(false);
+      if (e.response != null) {
+        if (e.response?.data != null) {
+          Get.snackbar("Sorry", "${e.response?.data['message']}",
+              backgroundColor: Colors.orange);
+        }
+      } else {
+        Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red);
+      }
+    } catch (e) {
+      loading(false);
+      Get.snackbar("Sorry", e.toString(), backgroundColor: Colors.red);
     }
   }
   void increment() => count.value++;

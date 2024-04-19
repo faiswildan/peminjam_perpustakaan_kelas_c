@@ -5,7 +5,8 @@ description: A new Flutter project.
 environment: 
   sdk: '>=3.0.5 <4.0.0'
 
-dependencies: 
+dependencies:
+  cached_network_image: ^3.2.0
   cupertino_icons: ^1.0.2
   get: 4.6.5
   dio: 5.4.0
@@ -13,6 +14,11 @@ dependencies:
   get_storage: ^2.1.1
   flutter: 
     sdk: flutter
+  datetime_picker_formfield: ^2.0.0
+  date_time_picker: ^2.1.0
+  flutter_datetime_picker: ^1.5.1
+  carousel_slider: ^4.0.0
+
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -21,4 +27,26 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
-
+  assets:
+    - assets/images/Buku.png
+    - assets/images/PustakaDigital.png
+    - assets/images/ronggeng-dukuh-paruk.jpg
+    - assets/images/buku-donggeng-anak.jpg
+    - assets/images/buku-harian-seorang-istri.jpg
+    - assets/images/buku-manajemen-sekolah.jpg
+    - assets/images/Buku-Pintar-Komputer-Laptop.jpg
+    - assets/images/Cinta-Yang-Tak-Biasa.jpg
+    - assets/images/filosofi-teras.jpg
+    - assets/images/jangan-membuat-masalah-kecil-jadi-besar.jpg
+    - assets/images/Menjadi-Manusia-Menjadi-Hamba.jpg
+    - assets/images/Metode-Penelitian-kuantitatif.png
+    - assets/images/Metodologi-Penelitian-Pendidikan.jpg
+    - assets/images/Metodologi-Penelitian_Kuantitatif-dan-kuanlitatif.jpg
+    - assets/images/mukjizat-nabi-rasul.jpg
+    - assets/images/ronggeng-dukuh-paruk.jpg
+    - assets/images/pustaka.png
+    - assets/images/rakbuku.jpg
+    - assets/images/logo.png
+    - assets/images/bukudirumput.jpg
+    - assets/images/logo-pustaka.png
+    - assets/images/caraousel.png

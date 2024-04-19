@@ -9,7 +9,7 @@ void main() {
   GetStorage.init();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Pustaka Digital",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
