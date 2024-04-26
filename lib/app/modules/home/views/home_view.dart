@@ -22,7 +22,13 @@ class HomeView extends GetView<HomeController> {
           'Halaman Utama',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        centerTitle: true, // Membuat judul rata tengah secara horizontal
+        // leading: IconButton( // Tambahkan leading parameter di sini
+        //   icon: Icon(Icons.person),
+        //   onPressed: () {
+        //     Get.toNamed(Routes.PROFIL);
+        //   },
+        // ),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -88,12 +94,7 @@ class HomeView extends GetView<HomeController> {
                 child: Text("Buku"),
               ),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => KoleksiView()),
-                  );
-                },
+                 onPressed: () => Get.toNamed(Routes.KOLEKSI),
                 child: Text("Koleksi"),
               ),
               ElevatedButton(

@@ -18,7 +18,7 @@ dependencies:
   date_time_picker: ^2.1.0
   flutter_datetime_picker: ^1.5.1
   carousel_slider: ^4.0.0
-
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
@@ -50,3 +50,12 @@ flutter:
     - assets/images/bukudirumput.jpg
     - assets/images/logo-pustaka.png
     - assets/images/caraousel.png
+    - assets/images/laskar-pelangi.png
+    - assets/images/ayat-ayat-cinta.jpg
+    - assets/images/bumi-dan-lukanya.jpg
+    - assets/images/bumi-manusia.jpg
+    - assets/images/cinta-didalam-gelas.jpg
+    - assets/images/gadis-pantai.jpg
+    - assets/images/perahu-kertas.jpg
+    - assets/images/pulang.jpg
+    - assets/images/sang-pemimpi.jpg

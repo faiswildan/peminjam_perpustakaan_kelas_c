@@ -12,7 +12,10 @@ class PeminjamanView extends GetView<PeminjamanController> {
       backgroundColor: Colors.lightBlue,
         appBar: AppBar(
           backgroundColor: Colors.lightBlue,
-          title: const Text('PeminjamanView'),
+          title: const Text(
+            'Peminjaman',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
         ),
         body: controller.obx((state) => ListView.separated(
@@ -22,21 +25,20 @@ class PeminjamanView extends GetView<PeminjamanController> {
               padding: EdgeInsets.all(8),
               margin: EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8)
+                color: Colors.white,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: ListTile(
-                leading: Container(
-                  width: 50,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: AssetImage("${state[index].book?.image}"),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(3),
+                  child: SizedBox(
+                    child: Image.asset(
+                      "${state[index].book?.image}",
                     ),
                   ),
                 ),
-              title: Text("${state[index].book?.judul}"),
+                title: Text("${state[index].book?.judul}"),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -51,7 +53,8 @@ class PeminjamanView extends GetView<PeminjamanController> {
           separatorBuilder: (BuildContext context, int index) {
             return const Divider(); // Divider between items
           },
-        ))
+        )
+      )
     );
   }
 }

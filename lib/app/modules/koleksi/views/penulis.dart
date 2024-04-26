@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class AuthorInfoPage extends StatelessWidget {
   final String author;
-  final String cover;
+  final String image;
   final String biografi;
 
   AuthorInfoPage({
     required this.author,
-    required this.cover,
+    required this.image,
     required this.biografi,
   });
 
@@ -23,10 +23,16 @@ class AuthorInfoPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset(
-              cover,
-              fit: BoxFit.cover,
-              height: 200,
+            Container(
+              width: 140.0, // Sesuaikan lebar gambar sesuai kebutuhan
+              height: 200.0, // Sesuaikan tinggi gambar sesuai kebutuhan
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5), // Sesuaikan nilai border radius sesuai kebutuhan
+                image: DecorationImage(
+                  image: AssetImage(image),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SizedBox(height: 20),
             Container(

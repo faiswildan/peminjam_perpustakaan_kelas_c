@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:peminjam_perpustakaan_kelasc/app/modules/book/views/ulasan_view.dart';
+import 'package:peminjam_perpustakaan_kelasc/app/modules/koleksi/views/ulasan_view.dart';
+import 'package:get/get.dart';
+import '../../../routes/app_pages.dart';
 
 class BookPage extends StatelessWidget {
   final String judul;
@@ -52,16 +54,18 @@ class BookPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Navigasi ke halaman ulasan
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ReviewPage(judul: judul)),
-                        );
-                      },
-                      child: Text('Beri Ulasan', style: TextStyle(fontSize: 20)),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     // Navigasi ke halaman ulasan dengan meneruskan judul dan gambar buku
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => ReviewPage(),
+                    //       ),
+                    //     );
+                    //   },
+                    //   child: Text('Beri Ulasan', style: TextStyle(fontSize: 20)),
+                    // ),
                     SizedBox(height: 10),
                   ],
                 ),

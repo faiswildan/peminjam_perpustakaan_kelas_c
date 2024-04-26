@@ -67,10 +67,6 @@ class BookController extends GetxController with StateMixin<List<DataBuku>> {
       DataBuku dataBuku = state![index];
       final idUser = StorageProvider.read(StorageKey.idUser);
       final bookId = Get.parameters['id'];
-      // if (idUser == null || bookId == null) {
-      //   Get.snackbar("Sorry", "User ID or Book ID is not available", backgroundColor: Colors.orange);
-      //   return;
-      // }
       final response = await ApiProvider.instance().post(Endpoint.koleksi,
           data: {
             "user_id": int.parse(StorageProvider.read(StorageKey.idUser)),
@@ -80,7 +76,7 @@ class BookController extends GetxController with StateMixin<List<DataBuku>> {
         Get.back();
         Get.snackbar("Berhasil", "Buku berhasil disimpan ke dalam koleksi", backgroundColor: Colors.green);
       } else {
-        Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);
+        Get.snackbar("Sorry", "Menambahkan Ke Koleksi Gagal", backgroundColor: Colors.orange);
       }
     } on dio.DioException catch (e) {
       loading(false);
@@ -97,5 +93,19 @@ class BookController extends GetxController with StateMixin<List<DataBuku>> {
       Get.snackbar("Sorry", e.toString(), backgroundColor: Colors.red);
     }
   }
+
+  void filterBooks(String query) {
+    // Lakukan filter berdasarkan judul buku
+    if (query.isNotEmpty) {
+      List<DataBuku> filteredList = state!
+          .where((book) => book.judul!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      change(filteredList, status: RxStatus.success());
+    } else {
+      // Jika query kosong, tampilkan semua buku
+      change(state, status: RxStatus.success());
+    }
+  }
+
   void increment() => count.value++;
 }

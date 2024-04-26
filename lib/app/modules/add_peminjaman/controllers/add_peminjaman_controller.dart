@@ -48,8 +48,9 @@ class AddPeminjamanController extends GetxController {
         });
         if (response.statusCode == 201) {
           Get.back();
+          Get.snackbar("Berhasil", "Buku berhasil dipinjam", backgroundColor: Colors.green);
         } else {
-          Get.snackbar("Sorry", "Simpan Gagal", backgroundColor: Colors.orange);
+          Get.snackbar("Sorry", "Pinjam Gagal", backgroundColor: Colors.orange);
         }
       }
       loading(false);
@@ -71,5 +72,4 @@ class AddPeminjamanController extends GetxController {
       throw Exception('Error: $e');
     }
   }
-
 }

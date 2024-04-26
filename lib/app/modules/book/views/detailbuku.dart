@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class BookDetail extends StatelessWidget {
   final String title;
   final String description;
-  final String imageUrl;
+  final String image;
 
-  BookDetail({required this.title, required this.description, required this.imageUrl});
+  BookDetail({required this.title, required this.description, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,16 @@ class BookDetail extends StatelessWidget {
             ),
             SizedBox(height: 8),
             ClipRRect(
-              borderRadius: BorderRadius.circular(10), // Mengatur sudut gambar
-              child: Image.network(
-                imageUrl,
-                height: 200,
-                width: MediaQuery.of(context).size.width,
+              borderRadius: BorderRadius.circular(5), // Mengatur sudut gambar
+              child: Container(
+                width: 100.0, // Sesuaikan lebar gambar sesuai kebutuhan
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover, // Untuk memastikan gambar terisi dengan benar dalam container
+                  errorBuilder: (context, error, stackTrace) {
+                    return Icon(Icons.error);
+                  },
+                ),
               ),
             ),
             Padding(

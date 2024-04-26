@@ -147,10 +147,26 @@ class RegisterView extends GetView<RegisterController> {
                     child: Text(
                       'Daftar',
                       style: TextStyle(
-                        color: Colors.black, // Warna teks putih
+                        color: Colors.black,
                       ),
                     ),
                   )),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate back to the login page
+                      Get.back();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue[500],
+                    ),
+                    child: Text(
+                      'Kembali',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
